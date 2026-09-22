@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Jony Ahmed | Personal Profile</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    min-height:100vh;
+    background:
+    radial-gradient(circle at 50% 12%,rgba(255,0,45,.16),transparent 30%),
+    linear-gradient(135deg,#020202,#080808 50%,#020202);
+    color:#fff;
+    font-family:Arial,Helvetica,sans-serif;
+    overflow-x:hidden;
+}
+
+body:before,
+body:after{
+    content:"";
+    position:fixed;
+    width:280px;
+    height:280px;
+    border-radius:50%;
+    background:#ff003c;
+    filter:blur(130px);
+    opacity:.07;
+    z-index:-2;
+}
+
+body:before{
+    top:5%;
+    left:-180px;
+}
+
+body:after{
+    right:-180px;
+    bottom:5%;
+}
+
+.nav{
+    height:64px;
+    width:100%;
+    position:fixed;
+    top:0;
+    left:0;
+    z-index:100;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:0 7%;
+    background:rgba(0,0,0,.72);
+    backdrop-filter:blur(15px);
+    border-bottom:1px solid rgba(255,255,255,.06);
+}
+
+.logo{
+    display:flex;
+    align-items:center;
+    gap:9px;
+    font-size:14px;
+    font-weight:bold;
+    letter-spacing:4px;
+}
+
+.logo-icon{
+    color:#ff1744;
+    font-size:24px;
+}
+
+.menu{
+    width:27px;
+    height:20px;
+    display:flex;
+    flex-direction:column;
+    justify-content:space-between;
+}
+
+.menu span{
+    height:2px;
+    width:100%;
+    background:#fff;
+    border-radius:5px;
+}
+
+.main{
+    width:100%;
+    max-width:850px;
+    margin:auto;
+    padding:105px 16px 45px;
+}
+
+.profile{
+    text-align:center;
+    animation:show .45s ease both;
+}
+
+@keyframes show{
+    from{
+        opacity:0;
+        transform:translateY(-15px);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+.photo-wrap{
+    width:180px;
+    height:180px;
+    margin:auto;
+    padding:4px;
+    border-radius:50%;
+    background:linear-gradient(
+        135deg,
+        #ff003c,
+        #ff1744,
+        #70001c,
+        #ff003c
+    );
+    box-shadow:
+    0 0 22px rgba(255,0,60,.55),
+    0 0 60px rgba(255,0,60,.18);
+    animation:glow 1.8s ease-in-out infinite alternate;
+}
+
+@keyframes glow{
+    from{
+        box-shadow:0 0 15px rgba(255,0,60,.35);
+    }
+    to{
+        box-shadow:
+        0 0 30px rgba(255,0,60,.7),
+        0 0 65px rgba(255,0,60,.2);
+    }
+}
+
+.photo{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    border-radius:50%;
+    display:block;
+    border:5px solid #050505;
+}
+
+.name{
+    margin-top:22px;
+    font-size:52px;
+    line-height:1;
+    font-weight:900;
+    letter-spacing:2px;
+}
+
+.name .white{
+    color:#fff;
+}
+
+.name .red{
+    color:#ff1744;
+    font-style:italic;
+}
+
+.subtitle{
+    margin-top:15px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:12px;
+    color:#ddd;
+    letter-spacing:5px;
+    font-size:12px;
+}
+
+.line{
+    width:65px;
+    height:1px;
+    background:#777;
+}
+
+.tagline{
+    margin-top:22px;
+    color:#bbb;
+    font-size:15px;
+}
+
+.tagline b{
+    color:#ff1744;
+    padding:0 9px;
+}
+
+.social-list{
+    margin-top:40px;
+    display:flex;
+    flex-direction:column;
+    gap:14px;
+}
+
+.social{
+    height:88px;
+    width:100%;
+    position:relative;
+    overflow:hidden;
+    display:flex;
+    align-items:center;
+    padding:0 22px;
+    text-decoration:none;
+    color:#fff;
+    border-radius:17px;
+    background:rgba(9,13,20,.85);
+    backdrop-filter:blur(10px);
+    border:2px solid var(--color);
+    box-shadow:0 0 18px rgba(0,0,0,.35);
+    transition:
+    transform .16s ease,
+    box-shadow .16s ease;
+    animation:slide .4s ease both;
+}
+
+.social:nth-child(1){animation-delay:.05s}
+.social:nth-child(2){animation-delay:.10s}
+.social:nth-child(3){animation-delay:.15s}
+.social:nth-child(4){animation-delay:.20s}
+.social:nth-child(5){animation-delay:.25s}
+.social:nth-child(6){animation-delay:.30s}
+
+@keyframes slide{
+    from{
+        opacity:0;
+        transform:translateY(15px);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+.social:hover{
+    transform:translateY(-3px);
+    box-shadow:0 0 25px var(--glow);
+}
+
+.social:active{
+    transform:scale(.97);
+}
+
+.social:after{
+    content:attr(data-letter);
+    position:absolute;
+    right:85px;
+    font-size:85px;
+    font-weight:900;
+    color:var(--color);
+    opacity:.055;
+    pointer-events:none;
+}
+
+.icon{
+    width:56px;
+    height:56px;
+    flex:none;
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:var(--icon-bg);
+    box-shadow:0 0 18px var(--glow);
+    font-size:27px;
+    font-weight:900;
+    z-index:2;
+}
+
+.social-text{
+    margin-left:17px;
+    z-index:2;
+}
+
+.social-text h3{
+    font-size:19px;
+    margin-bottom:5px;
+}
+
+.social-text p{
+    color:#aaa;
+    font-size:12px;
+}
+
+.arrow{
+    margin-left:auto;
+    font-size:32px;
+    z-index:2;
+}
+
+.facebook{
+    --color:#1683ff;
+    --glow:rgba(22,131,255,.45);
+    --icon-bg:#1677e8;
+}
+
+.whatsapp{
+    --color:#00df68;
+    --glow:rgba(0,223,104,.4);
+    --icon-bg:#08c95f;
+}
+
+.imo{
+    --color:#198cff;
+    --glow:rgba(25,140,255,.4);
+    --icon-bg:#fff;
+}
+
+.messenger{
+    --color:#ff1493;
+    --glow:rgba(255,20,147,.4);
+    --icon-bg:linear-gradient(135deg,#008cff,#d900ff);
+}
+
+.instagram{
+    --color:#ff1688;
+    --glow:rgba(255,22,136,.4);
+    --icon-bg:linear-gradient(135deg,#ffdc80,#fcaf45,#e1306c,#833ab4);
+}
+
+.tiktok{
+    --color:#ff1744;
+    --glow:rgba(255,23,68,.45);
+    --icon-bg:#050505;
+}
+
+.footer{
+    text-align:center;
+    margin-top:40px;
+    padding-top:25px;
+    border-top:1px solid #191919;
+}
+
+.footer-title{
+    color:#999;
+    letter-spacing:5px;
+    font-size:10px;
+}
+
+.signature{
+    color:#ff1744;
+    font-size:23px;
+    font-style:italic;
+    font-family:cursive;
+    margin-top:14px;
+}
+
+.footer-crown{
+    margin-top:15px;
+    color:#ff1744;
+    font-size:20px;
+}
+
+@media(max-width:500px){
+
+    .nav{
+        padding:0 18px;
+    }
+
+    .main{
+        padding-left:13px;
+        padding-right:13px;
+    }
+
+    .photo-wrap{
+        width:155px;
+        height:155px;
+    }
+
+    .name{
+        font-size:42px;
+    }
+
+    .subtitle{
+        font-size:9px;
+        letter-spacing:3px;
+    }
+
+    .line{
+        width:32px;
+    }
+
+    .social{
+        height:80px;
+        padding:0 16px;
+        border-radius:15px;
+    }
+
+    .icon{
+        width:51px;
+        height:51px;
+        font-size:23px;
+    }
+
+    .social-text{
+        margin-left:13px;
+    }
+
+    .social-text h3{
+        font-size:17px;
+    }
+
+    .social-text p{
+        font-size:10px;
+    }
+
+    .arrow{
+        font-size:28px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header class="nav">
+
+    <div class="logo">
+        <span class="logo-icon">♔</span>
+        JONY AHMED
+    </div>
+
+    <div class="menu">
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+
+</header>
+
+
+<main class="main">
+
+    <section class="profile">
+
+        <div class="photo-wrap">
+            <img
+                src="5995.jpg"
+                class="photo"
+                alt="Jony Ahmed"
+            >
+        </div>
+
+        <h1 class="name">
+            <span class="white">JONY</span>
+            <span class="red">AHMED</span>
+        </h1>
+
+        <div class="subtitle">
+            <span class="line"></span>
+            PERSONAL PROFILE
+            <span class="line"></span>
+        </div>
+
+        <div class="tagline">
+            Simple Life
+            <b>×</b>
+            Big Dreams
+            <b>×</b>
+            Keep Going
+        </div>
+
+    </section>
+
+
+    <div class="social-list">
+
+        <!-- FACEBOOK -->
+        <a
+            class="social facebook"
+            href="https://www.facebook.com/mrjony127"
+            target="_blank"
+            data-letter="f"
+        >
+            <div class="icon">f</div>
+
+            <div class="social-text">
+                <h3>Facebook</h3>
+                <p>Follow me on Facebook</p>
+            </div>
+
+            <div class="arrow">→</div>
+        </a>
+
+
+        <!-- WHATSAPP -->
+        <a
+            class="social whatsapp"
+            href="https://wa.me/8801318699919"
+            target="_blank"
+            data-letter="W"
+        >
+            <div class="icon">◉</div>
+
+            <div class="social-text">
+                <h3>WhatsApp</h3>
+                <p>Chat with me on WhatsApp</p>
+            </div>
+
+            <div class="arrow">→</div>
+        </a>
+
+
+        <!-- IMO -->
+        <a
+            class="social imo"
+            href="tel:+8801318699919"
+            data-letter="imo"
+        >
+            <div
+                class="icon"
+                style="color:#1677d8;font-size:18px;"
+            >
+                imo
+            </div>
+
+            <div class="social-text">
+                <h3>IMO</h3>
+                <p>Connect with me on IMO</p>
+            </div>
+
+            <div class="arrow">→</div>
+        </a>
+
+
+        <!-- MESSENGER -->
+        <a
+            class="social messenger"
+            href="https://m.me/mrjony127"
+            target="_blank"
+            data-letter="M"
+        >
+            <div class="icon">ϟ</div>
+
+            <div class="social-text">
+                <h3>Messenger</h3>
+                <p>Message me on Messenger</p>
+            </div>
+
+            <div class="arrow">→</div>
+        </a>
+
+
+        <!-- INSTAGRAM -->
+        <a
+            class="social instagram"
+            href="https://www.instagram.com/mrjony_127/"
+            target="_blank"
+            data-letter="◎"
+        >
+            <div class="icon">◎</div>
+
+            <div class="social-text">
+                <h3>Instagram</h3>
+                <p>Follow me on Instagram</p>
+            </div>
+
+            <div class="arrow">→</div>
+        </a>
+
+
+        <!-- TIKTOK -->
+        <a
+            class="social tiktok"
+            href="https://www.tiktok.com/@mrjony127"
+            target="_blank"
+            data-letter="♪"
+        >
+            <div class="icon">♪</div>
+
+            <div class="social-text">
+                <h3>TikTok</h3>
+                <p>Watch my TikTok profile</p>
+            </div>
+
+            <div class="arrow">→</div>
+        </a>
+
+    </div>
+
+
+    <footer class="footer">
+
+        <div class="footer-title">
+            STAY CONNECTED
+        </div>
+
+        <div class="signature">
+            Jony Ahmed
+        </div>
+
+        <div class="footer-crown">
+            ♔
+        </div>
+
+    </footer>
+
+</main>
+
+</body>
+</html>
