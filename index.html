@@ -22,19 +22,19 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 25px;
+    padding: 22px;
 }
 
 .container {
     width: 100%;
-    max-width: 500px;
+    max-width: 480px;
     text-align: center;
 }
 
 .logo {
-    font-size: 34px;
+    font-size: 32px;
     font-weight: 900;
-    letter-spacing: 3px;
+    letter-spacing: 2px;
 }
 
 .logo span {
@@ -42,49 +42,122 @@ body {
 }
 
 .subtitle {
-    color: #888;
-    font-size: 12px;
+    color: #777;
+    font-size: 11px;
     letter-spacing: 3px;
-    margin-top: 10px;
-    margin-bottom: 45px;
+    margin: 12px 0 40px;
+}
+
+/* PASSWORD SCREEN */
+
+#lockScreen {
+    background: #141414;
+    border: 1px solid #292929;
+    border-radius: 20px;
+    padding: 30px 22px;
+}
+
+.lockIcon {
+    font-size: 48px;
+    margin-bottom: 18px;
+}
+
+#lockScreen h2 {
+    font-size: 21px;
+    margin-bottom: 10px;
+}
+
+#lockScreen p {
+    color: #888;
+    font-size: 13px;
+    margin-bottom: 22px;
+}
+
+#passwordInput {
+    width: 100%;
+    padding: 15px;
+    background: #080808;
+    border: 1px solid #333;
+    border-radius: 10px;
+    color: white;
+    outline: none;
+    font-size: 16px;
+    text-align: center;
+}
+
+#passwordInput:focus {
+    border-color: #ff3030;
+}
+
+#unlockBtn {
+    width: 100%;
+    margin-top: 15px;
+    padding: 15px;
+    background: #ff3030;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-size: 15px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+#unlockBtn:active {
+    transform: scale(.98);
+}
+
+#error {
+    color: #ff4545;
+    font-size: 13px;
+    margin-top: 14px;
+    min-height: 16px;
+}
+
+/* WEBSITE FOLDERS */
+
+#dashboard {
+    display: none;
 }
 
 .folders {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 20px;
+    gap: 18px;
 }
 
 .folder {
+    display: block;
     text-decoration: none;
     color: white;
     background: #151515;
     border: 1px solid #292929;
     border-radius: 18px;
-    padding: 28px 12px;
+    padding: 27px 10px;
     transition: .25s;
-    cursor: pointer;
+}
+
+.folder:active {
+    transform: scale(.96);
 }
 
 .folder:hover {
-    transform: translateY(-6px);
     border-color: #ff3030;
-    background: #1c1111;
+    background: #201111;
+    transform: translateY(-5px);
 }
 
-.folder-icon {
-    font-size: 55px;
-    margin-bottom: 15px;
-    filter: drop-shadow(0 4px 10px #000);
+.folderIcon {
+    font-size: 53px;
+    margin-bottom: 14px;
 }
 
 .folder h3 {
-    font-size: 15px;
-    letter-spacing: 1px;
+    font-size: 14px;
+    letter-spacing: .5px;
 }
 
 .folder p {
-    color: #777;
+    color: #888;
     font-size: 11px;
     margin-top: 8px;
 }
@@ -92,17 +165,18 @@ body {
 .footer {
     color: #555;
     font-size: 11px;
-    margin-top: 50px;
     letter-spacing: 2px;
+    margin-top: 45px;
 }
 
-@media (max-width: 350px) {
-    .folders {
-        gap: 12px;
-    }
-    .folder {
-        padding: 22px 8px;
-    }
+#logoutBtn {
+    margin-top: 25px;
+    padding: 11px 22px;
+    border: 1px solid #444;
+    border-radius: 9px;
+    color: #aaa;
+    background: transparent;
+    cursor: pointer;
 }
 </style>
 </head>
@@ -114,28 +188,63 @@ body {
     <div class="logo">JONY<span> PROJECTS</span></div>
     <div class="subtitle">MY WEBSITE COLLECTION</div>
 
-    <div class="folders">
+    <!-- PASSWORD SCREEN -->
 
-        <a class="folder"
-           href="https://mrjony127.github.io/onlinedatabase.io/">
-            <div class="folder-icon">📁</div>
-            <h3>ONLINE DATABASE</h3>
-            <p>Open Website ↗</p>
-        </a>
+    <div id="lockScreen">
 
-        <a class="folder"
-           href="https://mrjony127.github.io/TEST.COM/">
-            <div class="folder-icon">📁</div>
-            <h3>TEST.COM</h3>
-            <p>Open Website ↗</p>
-        </a>
+        <div class="lockIcon">🔐</div>
 
-        <a class="folder"
-           href="https://mrjony127.github.io/JONYMAILWEB/">
-            <div class="folder-icon">📁</div>
-            <h3>JONY MAIL</h3>
-            <p>Open Website ↗</p>
-        </a>
+        <h2>Welcome Back</h2>
+
+        <p>Enter your password to access projects</p>
+
+        <input
+            type="password"
+            id="passwordInput"
+            placeholder="Enter Password"
+            autocomplete="off"
+        >
+
+        <button id="unlockBtn" onclick="unlockWebsite()">
+            UNLOCK WEBSITE
+        </button>
+
+        <div id="error"></div>
+
+    </div>
+
+    <!-- DASHBOARD -->
+
+    <div id="dashboard">
+
+        <div class="folders">
+
+            <a class="folder"
+               href="https://mrjony127.github.io/onlinedatabase.io/">
+                <div class="folderIcon">📁</div>
+                <h3>ONLINE DATABASE</h3>
+                <p>Open Website ↗</p>
+            </a>
+
+            <a class="folder"
+               href="https://mrjony127.github.io/TEST.COM/">
+                <div class="folderIcon">📁</div>
+                <h3>TEST.COM</h3>
+                <p>Open Website ↗</p>
+            </a>
+
+            <a class="folder"
+               href="https://mrjony127.github.io/JONYMAILWEB/">
+                <div class="folderIcon">📁</div>
+                <h3>JONY MAIL</h3>
+                <p>Open Website ↗</p>
+            </a>
+
+        </div>
+
+        <button id="logoutBtn" onclick="logout()">
+            LOCK NOW
+        </button>
 
     </div>
 
@@ -144,6 +253,93 @@ body {
     </div>
 
 </div>
+
+<script>
+
+/* CHANGE YOUR PASSWORD HERE */
+
+const PASSWORD = "JONY123";
+
+/* 10 HOURS SESSION */
+
+const SESSION_TIME = 10 * 60 * 60 * 1000;
+
+const STORAGE_KEY = "jony_projects_unlock_time";
+
+function unlockWebsite() {
+
+    const entered =
+        document.getElementById("passwordInput").value;
+
+    if (entered === PASSWORD) {
+
+        localStorage.setItem(
+            STORAGE_KEY,
+            Date.now().toString()
+        );
+
+        showDashboard();
+
+    } else {
+
+        document.getElementById("error").textContent =
+            "Wrong Password! Try Again.";
+
+        document.getElementById("passwordInput").value = "";
+
+    }
+
+}
+
+function showDashboard() {
+
+    document.getElementById("lockScreen").style.display = "none";
+
+    document.getElementById("dashboard").style.display = "block";
+
+}
+
+function logout() {
+
+    localStorage.removeItem(STORAGE_KEY);
+
+    location.reload();
+
+}
+
+function checkSession() {
+
+    const savedTime = Number(
+        localStorage.getItem(STORAGE_KEY)
+    );
+
+    if (
+        savedTime &&
+        Date.now() - savedTime < SESSION_TIME
+    ) {
+
+        showDashboard();
+
+    } else {
+
+        localStorage.removeItem(STORAGE_KEY);
+
+    }
+
+}
+
+document.getElementById("passwordInput")
+.addEventListener("keydown", function(event) {
+
+    if (event.key === "Enter") {
+        unlockWebsite();
+    }
+
+});
+
+checkSession();
+
+</script>
 
 </body>
 </html>
